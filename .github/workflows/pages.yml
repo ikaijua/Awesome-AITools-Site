@@ -1,0 +1,44 @@
+name: Deploy GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Validate JavaScript and data
+        run: |
+          node --check site/app.js
+          python3 - <<'PY'
+          import json, pathlib
+          root = pathlib.Path('site')
+          data = json.loads((root / 'data.json').read_text())
+          for language in ('zh', 'en'):
+              assert data[language], f'Empty {language} directory'
+              for tool in data[language]:
+                  assert tool['name'] and tool['category'] and tool['links']
+                  assert all(link['url'].startswith(('https://', 'http://')) for link in tool['links'])
+          assert all((root / asset).exists() for asset in ('index.html', 'style.css', 'app.js', 'data.json'))
+          PY
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
