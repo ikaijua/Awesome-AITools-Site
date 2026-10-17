@@ -1,0 +1,86 @@
+{
+  "headline": [
+    "发现值得使用的<br><span class=\"accent\">AI 工具。</span>",
+    "Discover useful<br><span class=\"accent\">AI tools.</span>"
+  ],
+  "subtitle": [
+    "从灵感到创造，从日常到专业。<br>探索社区共同收藏的 AI 工具，找到适合你的那一个。",
+    "From inspiration to creation. From everyday to extraordinary.<br>Discover community-curated AI tools for your next idea."
+  ],
+  "herocta": [
+    "探索工具目录 <span>↗</span>",
+    "Explore the directory <span>↗</span>"
+  ],
+  "contribute": [
+    "一起完善这个清单 ↗",
+    "Help grow the collection ↗"
+  ],
+  "stattools": [
+    "收录工具",
+    "curated tools"
+  ],
+  "statcats": [
+    "探索分类",
+    "categories"
+  ],
+  "statlang": [
+    "双语目录",
+    "bilingual directory"
+  ],
+  "statcommunity": [
+    "开源共建 · 持续探索 · 保持好奇",
+    "Open source · Community curated · Stay curious"
+  ],
+  "categoriesTitle": [
+    "按分类探索 <span>↙</span>",
+    "Explore categories <span>↙</span>"
+  ],
+  "asideNote": [
+    "好工具值得被发现。<br>你的推荐，让清单更好。",
+    "Good tools deserve discovery.<br>Your contribution makes this better."
+  ],
+  "submit": [
+    "推荐工具 ↗",
+    "Suggest a tool ↗"
+  ],
+  "loadMore": [
+    "查看更多工具 ↓",
+    "Show more tools ↓"
+  ],
+  "dataNote": [
+    "内容来自项目 README · 收录快照：__SNAPSHOT__ · 功能与费用请以工具官网为准",
+    "Source: project README · Snapshot: __SNAPSHOT__ · Check official sites for current features and pricing"
+  ],
+  "communityTitle": [
+    "下一件好工具，<br>也许就来自你的推荐。",
+    "The next great tool<br>could come from you."
+  ],
+  "communityText": [
+    "这是一个由社区共同维护的开源清单。发现新工具、分享使用心得，让更多人少一点寻找，多一点创造。",
+    "An open-source collection maintained by the community. Share a useful discovery and help others spend less time searching, more time creating."
+  ],
+  "communityCta": [
+    "参与贡献 ↗",
+    "Contribute on GitHub ↗"
+  ],
+  "sponsorTitle": [
+    "项目赞助商",
+    "PROJECT SPONSORS"
+  ],
+  "xuanshuDescription": [
+    "<a href=\"https://www.xuanshuapi.com/\" target=\"_blank\" rel=\"noopener\"><b>玄枢API</b></a> — 面向企业、技术团队和个人开发者的新一代 AI 模型路由网关，提供企业级稳定性的全球顶级模型（Claude、GPT、Grok 等）一站式 API 接入。充值享八折，模型 2 折起，注册送 5 美金，企业支持开票；点<a href=\"https://www.xuanshuapi.com/register?aff=AWESOME-AI-TOOLS&promo=AWESOME-AI-TOOLS\" target=\"_blank\" rel=\"noopener\">此链接</a>注册额外获赠 5 美金额度。",
+    "<a href=\"https://www.xuanshuapi.com/\" target=\"_blank\" rel=\"noopener\"><b>Xuanshu API</b></a> — a next-generation AI model routing gateway for enterprises, technical teams, and individual developers, providing one-stop API access to world-class top models (Claude, GPT, Grok, etc.) with enterprise-grade stability. Recharge and enjoy 20% off, models starting from 20% of the original price, $5 free upon registration, invoice support for enterprises. Click <a href=\"https://www.xuanshuapi.com/register?aff=AWESOME-AI-TOOLS&promo=AWESOME-AI-TOOLS\" target=\"_blank\" rel=\"noopener\">this link</a> to register and get an extra $5 credit."
+  ],
+  "infistarDescription": [
+    "<a href=\"https://www.infistar.cc/register?aff=VTGJ8P6T&ref_source=link\" target=\"_blank\" rel=\"noopener\"><b>Infistar.cc（无限星河）</b></a> — 一站式全球大模型 API 服务平台，一个 Key 通吃清单里的所有工具：即插即用，支持自定义 Base URL 的工具填入即可直连，跨工具共享同一余额；官方接入、满血保真，多线路负载均衡，国内直连稳定，人民币结算；聚合 18+ 厂商、190+ 模型（Claude / GPT / DeepSeek 等），换模型只改名字；部分价格低至官方 0.1 折；另提供 GPT / Claude / Gemini 账号代充服务。走<a href=\"https://www.infistar.cc/register?aff=VTGJ8P6T&ref_source=link\" target=\"_blank\" rel=\"noopener\">专属通道</a>注册即享 $5 体验额度。",
+    "<a href=\"https://www.infistar.cc/register?aff=VTGJ8P6T&ref_source=link\" target=\"_blank\" rel=\"noopener\"><b>Infistar.cc</b></a> — a one-stop global LLM API platform. One key works with every tool in this list: plug &amp; play, any tool that supports a custom Base URL connects directly, with one shared balance across tools; official API access with full-power models and stable multi-route balancing, plus stable direct connectivity in China and CNY settlement; 18+ providers and 190+ models (Claude / GPT / DeepSeek, etc.) — switching models is just changing the name; select models from as low as 1% of official pricing, plus account top-up service for GPT / Claude / Gemini. Sign up via this <a href=\"https://www.infistar.cc/register?aff=VTGJ8P6T&ref_source=link\" target=\"_blank\" rel=\"noopener\">exclusive link</a> to get a $5 trial credit."
+  ],
+  "becomeSponsor": [
+    "成为赞助商 ↗",
+    "Become a sponsor ↗"
+  ],
+  "backTop": [
+    "回到顶部 ↑",
+    "Back to top ↑"
+  ]
+}

@@ -21,24 +21,34 @@ jobs:
         uses: actions/checkout@v6
       - name: Validate JavaScript and data
         run: |
+          python3 -m unittest discover -s scripts -p 'test_*.py'
           node --check site/app.js
           python3 - <<'PY'
           import json, pathlib
           root = pathlib.Path('site')
           data = json.loads((root / 'data.json').read_text())
+          assert len(data['meta']['commit']) == 40
+          assert data['meta']['repository'] == 'https://github.com/ikaijua/Awesome-AITools'
+          assert data['meta']['updatedAt'] in data['meta']['committedAt']
           for language in ('zh', 'en'):
               assert data[language], f'Empty {language} directory'
               for tool in data[language]:
                   assert tool['name'] and tool['category'] and tool['links']
                   assert all(link['url'].startswith(('https://', 'http://')) for link in tool['links'])
+                  assert not tool['more'] or tool['more'].startswith('https://github.com/ikaijua/Awesome-AITools/discussions/')
           assert all((root / asset).exists() for asset in ('index.html', 'style.css', 'app.js', 'data.json'))
           PY
       - name: Configure Pages
+        id: pages
         uses: actions/configure-pages@v5
+      - name: Build static bilingual pages
+        env:
+          PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: python3 scripts/build_site.py --base-url "$PAGES_BASE_URL"
       - name: Upload site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: site
+          path: dist
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
