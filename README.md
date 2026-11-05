@@ -15,6 +15,9 @@
 - 手机和电脑自适应布局
 - 中英文首页与完整静态分类页，无需 JavaScript 也可浏览
 - 每页独立标题、摘要、canonical、语言对应链接与站点地图
+- Open Graph / Twitter 大图分享卡片（中英文各一张，`site/og/`）
+- 构建时输出 `llms.txt`，便于 AI 检索引擎理解站点结构
+- 分类页带面包屑与 ItemList 结构化数据，首页标注 WebSite
 
 目录内容来自上游项目的中英文 README，两个语言版本分别保存，保留各自的分类、排序、说明、费用和介绍链接。快照日期与来源提交记录在 `site/data.json` 的 `meta` 中，页面日期随数据更新；使用下方脚本按需同步上游。
 
@@ -67,10 +70,12 @@ python3 -m http.server 8000 --directory dist
 
 - 中文首页：`/`；英文首页：`/en/`。
 - 分类页：`/zh/categories/<slug>/`、`/en/categories/<slug>/`。分类页直接包含该语言全部工具说明与链接，不依赖点击或执行 JavaScript。
+- 工具详情页：`/zh/tools/<slug>/`、`/en/tools/<slug>/`。只给 `site/tool_pages.json` 白名单里的工具建页（当前约 90 个高搜索量条目），页面含介绍、费用、官网链接、同类工具与常见问题，并带 SoftwareApplication / FAQPage 结构化数据。白名单是刻意设计的门槛：为全部 306 个条目自动建页会产生大量近重复内容，新增条目时按搜索需求人工补充即可，构建器会校验白名单名称与目录一致。
 - 首页预先渲染首批工具与完整分类导航；JavaScript 为首页补充搜索、费用筛选、收藏与弹窗。
 - 每页有独立标题、摘要、canonical 和可用语言的双向 hreflang；仅中文存在的分类不会指向不存在的英文页面。
-- `sitemap.xml` 自动列出全部页面；生成日期不冒充内容更新日期，未设置不可靠的 `lastmod`。
-- 分类页使用真实内容的面包屑结构化数据，首页标注 WebSite；不添加虚构评分或排名保证。
+- `sitemap.xml` 自动列出全部页面，`lastmod` 取 `site/data.json` 的数据快照日期（每次上游同步都会真实更新页面内容）。
+- 分类页使用真实内容的面包屑与 ItemList 结构化数据，首页标注 WebSite；不添加虚构评分或排名保证。
+- 分享卡片图由 `scripts/make_og_images.py`（需 Pillow，仅本机运行）生成并提交到 `site/og/`；改动标语或品牌色后重新执行即可。
 
 本地构建默认公开网址在 `site.config.json`。Actions 使用 `actions/configure-pages` 返回的实际 Pages 网址覆盖它，因此适配项目子路径和已配置的自定义域名。也可手动指定：
 

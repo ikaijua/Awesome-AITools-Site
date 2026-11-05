@@ -12,7 +12,7 @@ import build_site
 class Page(HTMLParser):
     def __init__(self, text):
         super().__init__()
-        self.links, self.canonicals, self.alternates, self.scripts = [], [], {}, []
+        self.links, self.canonicals, self.alternates, self.scripts, self.meta = [], [], {}, [], []
         self.ids, self.names = set(), []
         self.description = ""
         self.language = ""
@@ -39,6 +39,8 @@ class Page(HTMLParser):
             self.alternates[a['hreflang']] = a['href']
         if tag == 'meta' and a.get('name') == 'description':
             self.description = a.get('content', '')
+        if tag == 'meta':
+            self.meta.append((a.get('name') or a.get('property'), a))
         if tag in {'title', 'h3'} or tag == 'script' and a.get('type') in {'application/json', 'application/ld+json'}:
             self.active = [tag, a.get('type'), '']
 
@@ -131,6 +133,65 @@ class BuiltSiteTests(unittest.TestCase):
             output = Path(folder) / 'dist'
             build_site.build(output, 'https://example.org/')
             self.assertIn('Sitemap: https://example.org/sitemap.xml', (output / 'robots.txt').read_text())
+
+    def test_open_graph_and_twitter_cards_use_existing_images(self):
+        for url, page in self.pages.items():
+            image = next((meta.get('content') for name, meta in page.meta if name == 'og:image'), None)
+            self.assertTrue(image and image.startswith(self.base), url)
+            self.assertTrue((self.output / image.removeprefix(self.base)).is_file(), image)
+            card = next((meta.get('content') for name, meta in page.meta if name == 'twitter:card'), None)
+            self.assertEqual(card, 'summary_large_image', url)
+
+    def test_sitemap_carries_snapshot_lastmod(self):
+        tree = ET.parse(self.output / 'sitemap.xml')
+        lastmod = {element.text for element in tree.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod')}
+        self.assertEqual(lastmod, {self.data['meta']['updatedAt']})
+        self.assertEqual(len(tree.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}url')),
+                         len(tree.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}lastmod')))
+
+    def test_llms_txt_lists_every_category_once_per_language(self):
+        text = (self.output / 'llms.txt').read_text()
+        self.assertIn(self.data['meta']['repository'], text)
+        for lang in ('zh', 'en'):
+            names = {tool['category'] for tool in self.data[lang]}
+            for name in names:
+                self.assertIn(f'[{name}](', text)
+
+    def test_category_pages_expose_itemlist_jsonld(self):
+        for url, page in self.pages.items():
+            if '/categories/' not in url:
+                continue
+            lists = [script for script in page.scripts if script.get('@type') == 'ItemList']
+            self.assertEqual(len(lists), 1, url)
+            self.assertTrue(lists[0]['itemListElement'])
+
+    def test_allowlisted_tools_get_pages_with_application_schema(self):
+        spec = json.loads((build_site.ROOT / 'site/tool_pages.json').read_text())
+        data_names = {lang: {tool['name'] for tool in self.data[lang]} for lang in ('zh', 'en')}
+        expected = 0
+        for slug, entry in spec.items():
+            for lang in ('zh', 'en'):
+                name = entry.get('en', entry['zh']) if lang == 'en' else entry['zh']
+                if name not in data_names[lang]:
+                    continue
+                expected += 1
+                url = self.base + f'{lang}/tools/{slug}/'
+                self.assertIn(url, self.pages, slug)
+                page = self.pages[url]
+                self.assertIn(name, page.title, slug)
+                self.assertEqual(page.h1_count, 1, slug)
+                apps = [script for script in page.scripts if script.get('@type') == 'SoftwareApplication']
+                self.assertEqual([app['name'] for app in apps], [name], slug)
+        self.assertGreater(expected, 50)
+
+    def test_category_and_homepage_cards_link_to_tool_pages(self):
+        for tool in self.data['zh']:
+            if tool['name'] == 'Cursor':
+                category_url = self.base + 'zh/categories/ai-coding/'
+                resolved = {urljoin(category_url, href) for href in self.pages[category_url].links}
+                self.assertIn(self.base + 'zh/tools/cursor/', resolved)
+        resolved = {urljoin(self.base, href) for href in self.pages[self.base].links}
+        self.assertIn(self.base + 'zh/tools/chatgpt/', resolved)
 
     def test_new_upstream_category_gets_a_stable_link(self):
         data = {'zh': [{'category': '未来分类'}], 'en': []}
