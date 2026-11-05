@@ -165,6 +165,34 @@ class BuiltSiteTests(unittest.TestCase):
             self.assertEqual(len(lists), 1, url)
             self.assertTrue(lists[0]['itemListElement'])
 
+    def test_allowlisted_tools_get_pages_with_application_schema(self):
+        spec = json.loads((build_site.ROOT / 'site/tool_pages.json').read_text())
+        data_names = {lang: {tool['name'] for tool in self.data[lang]} for lang in ('zh', 'en')}
+        expected = 0
+        for slug, entry in spec.items():
+            for lang in ('zh', 'en'):
+                name = entry.get('en', entry['zh']) if lang == 'en' else entry['zh']
+                if name not in data_names[lang]:
+                    continue
+                expected += 1
+                url = self.base + f'{lang}/tools/{slug}/'
+                self.assertIn(url, self.pages, slug)
+                page = self.pages[url]
+                self.assertIn(name, page.title, slug)
+                self.assertEqual(page.h1_count, 1, slug)
+                apps = [script for script in page.scripts if script.get('@type') == 'SoftwareApplication']
+                self.assertEqual([app['name'] for app in apps], [name], slug)
+        self.assertGreater(expected, 50)
+
+    def test_category_and_homepage_cards_link_to_tool_pages(self):
+        for tool in self.data['zh']:
+            if tool['name'] == 'Cursor':
+                category_url = self.base + 'zh/categories/ai-coding/'
+                resolved = {urljoin(category_url, href) for href in self.pages[category_url].links}
+                self.assertIn(self.base + 'zh/tools/cursor/', resolved)
+        resolved = {urljoin(self.base, href) for href in self.pages[self.base].links}
+        self.assertIn(self.base + 'zh/tools/chatgpt/', resolved)
+
     def test_new_upstream_category_gets_a_stable_link(self):
         data = {'zh': [{'category': '未来分类'}], 'en': []}
         routes = build_site.category_routes(data)

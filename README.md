@@ -70,6 +70,7 @@ python3 -m http.server 8000 --directory dist
 
 - 中文首页：`/`；英文首页：`/en/`。
 - 分类页：`/zh/categories/<slug>/`、`/en/categories/<slug>/`。分类页直接包含该语言全部工具说明与链接，不依赖点击或执行 JavaScript。
+- 工具详情页：`/zh/tools/<slug>/`、`/en/tools/<slug>/`。只给 `site/tool_pages.json` 白名单里的工具建页（当前约 90 个高搜索量条目），页面含介绍、费用、官网链接、同类工具与常见问题，并带 SoftwareApplication / FAQPage 结构化数据。白名单是刻意设计的门槛：为全部 306 个条目自动建页会产生大量近重复内容，新增条目时按搜索需求人工补充即可，构建器会校验白名单名称与目录一致。
 - 首页预先渲染首批工具与完整分类导航；JavaScript 为首页补充搜索、费用筛选、收藏与弹窗。
 - 每页有独立标题、摘要、canonical 和可用语言的双向 hreflang；仅中文存在的分类不会指向不存在的英文页面。
 - `sitemap.xml` 自动列出全部页面，`lastmod` 取 `site/data.json` 的数据快照日期（每次上游同步都会真实更新页面内容）。
