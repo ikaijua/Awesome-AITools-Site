@@ -100,20 +100,27 @@ def category_routes(data):
     return routes
 
 
-def head(title, description, path, alternates, base, breadcrumb=None):
+LOCALES = {"zh": "zh_CN", "en": "en_US"}
+
+
+def head(title, description, path, alternates, base, lang, breadcrumb=None, image="og/zh.png", items=None):
     canonical = base + path
     lines = [f'<link rel="canonical" href="{escape(canonical)}">']
-    for lang, target in alternates.items():
-        lines.append(f'<link rel="alternate" hreflang="{LANG_CODES[lang]}" href="{escape(base + target)}">')
+    for alternate, target in alternates.items():
+        lines.append(f'<link rel="alternate" hreflang="{LANG_CODES[alternate]}" href="{escape(base + target)}">')
     default = alternates.get("zh", next(iter(alternates.values())))
     lines.append(f'<link rel="alternate" hreflang="x-default" href="{escape(base + default)}">')
-    for key, value in {"og:type": "website", "og:site_name": "Awesome AI Tools", "og:title": title, "og:description": description, "og:url": canonical}.items():
-        lines.append(f'<meta property="{key}" content="{escape(value)}">')
-    lines.append('<meta name="twitter:card" content="summary">')
+    for key, value in {"og:type": "website", "og:site_name": "Awesome AI Tools", "og:title": title, "og:description": description, "og:url": canonical, "og:locale": LOCALES[lang], "og:image": base + image, "og:image:width": "1200", "og:image:height": "630", "og:image:alt": title}.items():
+        lines.append(f'<meta property="{key}" content="{escape(str(value))}">')
+    for key, value in {"twitter:card": "summary_large_image", "twitter:title": title, "twitter:description": description, "twitter:image": base + image}.items():
+        lines.append(f'<meta name="{key}" content="{escape(value)}">')
     schema = {"@context": "https://schema.org", "@type": "WebSite", "name": "Awesome AI Tools", "url": base}
     if breadcrumb:
         schema = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i, "name": name, "item": base + target} for i, (name, target) in enumerate(breadcrumb, 1)]}
     lines.append(f'<script type="application/ld+json">{script_json(schema)}</script>')
+    if items:
+        listing = {"@context": "https://schema.org", "@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i, "name": tool["name"], "url": tool["links"][0]["url"]} for i, tool in enumerate(items, 1)]}
+        lines.append(f'<script type="application/ld+json">{script_json(listing)}</script>')
     return "\n".join(lines)
 
 
@@ -187,7 +194,7 @@ def homepage(data, labels, routes, lang, base, template):
         page = page.replace(f'="{asset}', f'="{prefix}{asset}')
     payload = {"data": prefix + "data.json", "homes": {key: relative(value, current) for key, value in HOMES.items()}, "categories": {key: {name: relative(path, current) for name, path in group.items()} for key, group in routes.items()}}
     page = page.replace('<!-- SITE_PAYLOAD -->', f'<script id="site-labels" type="application/json">{script_json(labels)}</script><script id="site-routes" type="application/json">{script_json(payload)}</script>')
-    page = page.replace('<!-- SEO_HEAD -->', head(title, description, current, HOMES, base))
+    page = page.replace('<!-- SEO_HEAD -->', head(title, description, current, HOMES, base, lang, image=f"og/{lang}.png"))
     # The generated links make language navigation available with JavaScript disabled.
     return page
 
@@ -212,7 +219,7 @@ def category_page(data, routes, lang, name, path, base):
     return f'''<!doctype html>
 <html lang="{LANG_CODES[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{escape(title)}</title><meta name="description" content="{escape(description)}">
-{head(title, description, path, alternates, base, [("工具目录" if zh else "Directory", HOMES[lang]), (display, path)])}
+{head(title, description, path, alternates, base, lang, [("工具目录" if zh else "Directory", HOMES[lang]), (display, path)], image=f"og/{lang}.png", items=tools)}
 <link rel="stylesheet" href="{assets}style.css?v=static-directory-v1"></head><body class="category-page">
 <header><a class="brand" href="{home}"><span class="mark">✳</span> Awesome AI Tools</a><nav><a href="{home}#directory">{"搜索工具" if zh else "Search tools"}</a>{language_link}<a href="{REPO}" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
 <main><section class="category-intro"><nav class="breadcrumbs" aria-label="{"当前位置" if zh else "Breadcrumb"}"><a href="{home}">{"工具目录" if zh else "Directory"}</a><span aria-hidden="true"> / </span><span aria-current="page">{escape(display)}</span></nav>
@@ -262,14 +269,41 @@ def build(output, base):
     ET.register_namespace("", "http://www.sitemaps.org/schemas/sitemap/0.9")
     ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
     sitemap = ET.Element(ns + "urlset")
+    lastmod = data["meta"]["updatedAt"]
     for path in pages:
-        ET.SubElement(ET.SubElement(sitemap, ns + "url"), ns + "loc").text = base + path
-    # Omit lastmod rather than invent a page-change date from a data snapshot timestamp.
+        url = ET.SubElement(sitemap, ns + "url")
+        ET.SubElement(url, ns + "loc").text = base + path
+        # Every page is rebuilt from the same upstream snapshot, so the snapshot
+        # date is the latest date any page content could have changed.
+        ET.SubElement(url, ns + "lastmod").text = lastmod
     ET.ElementTree(sitemap).write(output / "sitemap.xml", encoding="utf-8", xml_declaration=True)
+    (output / "llms.txt").write_text(llms_txt(data, routes, base), encoding="utf-8")
     (output / ".nojekyll").touch()
-    if parsed.path in {"", "/"}:
+    # robots.txt is only read at the origin root, so a project-subpath build
+    # must not ship one; a root-domain deployment (custom domain) should.
+    if urlsplit(base).path in {"", "/"}:
         (output / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n", encoding="utf-8")
     return {"base_url": base, "pages": len(pages), "categories": {lang: len(group) for lang, group in routes.items()}}
+
+
+def llms_txt(data, routes, base):
+    """A concise plain-text summary for AI answer engines and their crawlers."""
+    lines = ["# Awesome AI Tools", ""]
+    lines.append(f"> Bilingual (Chinese/English) directory of {len(data['zh'])} curated AI tools and open-source projects, maintained by the [Awesome-AITools]({REPO}) community.")
+    lines.append("")
+    lines.append(f"Snapshot: {data['meta']['updatedAt']} · License: CC BY 4.0 · Search UI requires JavaScript; category pages below are static and fully readable.")
+    lines.append("")
+    lines.append("## Categories")
+    lines.append("")
+    for lang, group in routes.items():
+        label = "Chinese" if lang == "zh" else "English"
+        lines.append(f"### {label}")
+        lines.append("")
+        for name, path in group.items():
+            count = sum(tool["category"] == name for tool in data[lang])
+            lines.append(f"- [{name}]({base + path}) ({count} tools)")
+        lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def main():
