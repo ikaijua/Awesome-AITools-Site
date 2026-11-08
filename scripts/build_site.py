@@ -223,7 +223,7 @@ def category_page(data, routes, lang, name, path, base, tool_links):
     return f'''<!doctype html>
 <html lang="{LANG_CODES[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{escape(title)}</title><meta name="description" content="{escape(description)}">
-{head(title, description, path, alternates, base, lang, [("工具目录" if zh else "Directory", HOMES[lang]), (display, path)], image=f"og/{lang}.png", items=tools)}
+{head(title, description, path, alternates, base, lang, [("工具目录" if zh else "Directory", HOMES[lang]), (display, path)], image=f"og/{lang}/categories/{slug}.png", items=tools)}
 <link rel="stylesheet" href="{assets}style.css?v=static-directory-v1"></head><body class="category-page">
 <header><a class="brand" href="{home}"><span class="mark">✳</span> Awesome AI Tools</a><nav><a href="{home}#directory">{"搜索工具" if zh else "Search tools"}</a>{language_link}<a href="{REPO}" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
 <main><section class="category-intro"><nav class="breadcrumbs" aria-label="{"当前位置" if zh else "Breadcrumb"}"><a href="{home}">{"工具目录" if zh else "Directory"}</a><span aria-hidden="true"> / </span><span aria-current="page">{escape(display)}</span></nav>
@@ -353,7 +353,7 @@ def tool_page(data, category_routes_, slug, lang, name, path, slug_routes, name_
     return f'''<!doctype html>
 <html lang="{LANG_CODES[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{escape(title)}</title><meta name="description" content="{escape(description)}">
-{head(title, description, path, alternates, base, lang, [("工具目录" if zh else "Directory", HOMES[lang]), (category, category_path), (name, path)], image=f"og/{lang}.png")}
+{head(title, description, path, alternates, base, lang, [("工具目录" if zh else "Directory", HOMES[lang]), (category, category_path), (name, path)], image=f"og/{lang}/tools/{slug}.png")}
 <script type="application/ld+json">{script_json(listing)}</script>
 <script type="application/ld+json">{script_json(faq_schema)}</script>
 <link rel="stylesheet" href="{assets}style.css?v=tool-pages-v1"></head><body class="category-page tool-page-body">

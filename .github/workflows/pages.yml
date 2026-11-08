@@ -27,6 +27,13 @@ jobs:
           repository: ikaijua/Awesome-AITools
           path: .upstream
           fetch-depth: 0 # the feed derives first-appearance dates from full history
+      - name: Install Pillow and CJK fonts for OG cards
+        run: |
+          python3 -m pip install --quiet pillow
+          if ! PYTHONPATH=scripts python3 -c 'import build_og; build_og.font(24, True); build_og.font(24, False)' 2>/dev/null; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk
+            PYTHONPATH=scripts python3 -c 'import build_og; build_og.font(24, True); build_og.font(24, False)'
+          fi
       - name: Validate JavaScript and data
         run: |
           python3 -m unittest discover -s scripts -p 'test_*.py'
@@ -59,6 +66,12 @@ jobs:
         run: |
           python3 scripts/build_feed.py --upstream .upstream --outdir dist --limit 60 --site "$PAGES_BASE_URL"
           test -s dist/feed.xml && test -s dist/feed.json
+      - name: Build OG share cards
+        env:
+          PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          python3 scripts/build_og.py --base-url "$PAGES_BASE_URL"
+          test "$(find dist/og -name '*.png' | wc -l)" -gt 100
       - name: Upload site
         uses: actions/upload-pages-artifact@v4
         with:

@@ -7,6 +7,7 @@ from urllib.parse import unquote, urljoin, urlsplit
 import xml.etree.ElementTree as ET
 
 import build_site
+import build_og
 
 
 class Page(HTMLParser):
@@ -144,6 +145,7 @@ class BuiltSiteTests(unittest.TestCase):
             self.assertIn('Sitemap: https://example.org/sitemap.xml', (output / 'robots.txt').read_text())
 
     def test_open_graph_and_twitter_cards_use_existing_images(self):
+        build_og.build(self.output, self.base)
         for url, page in self.pages.items():
             image = next((meta.get('content') for name, meta in page.meta if name == 'og:image'), None)
             self.assertTrue(image and image.startswith(self.base), url)
