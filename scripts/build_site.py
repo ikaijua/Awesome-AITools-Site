@@ -117,7 +117,17 @@ def head(title, description, path, alternates, base, lang, breadcrumb=None, imag
         lines.append(f'<meta property="{key}" content="{escape(str(value))}">')
     for key, value in {"twitter:card": "summary_large_image", "twitter:title": title, "twitter:description": description, "twitter:image": base + image}.items():
         lines.append(f'<meta name="{key}" content="{escape(value)}">')
-    schema = {"@context": "https://schema.org", "@type": "WebSite", "name": "Awesome AI Tools", "url": base}
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Awesome AI Tools",
+        "url": base,
+        "inLanguage": ["zh-CN", "en"],
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        # One entity graph across every page: answer engines resolve the site to
+        # the upstream repo instead of treating it as an unattributed mirror.
+        "publisher": {"@type": "Organization", "name": "Awesome-AITools", "url": REPO, "sameAs": [REPO]},
+    }
     if breadcrumb:
         schema = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": i, "name": name, "item": base + target} for i, (name, target) in enumerate(breadcrumb, 1)]}
     lines.append(f'<script type="application/ld+json">{script_json(schema)}</script>')
@@ -220,16 +230,39 @@ def category_page(data, routes, lang, name, path, base, tool_links):
     language_link = f'<a href="{relative(alternates[other], path)}" hreflang="{LANG_CODES[other]}">{"English" if zh else "中文"}</a>' if other in alternates else ''
     home = relative(HOMES[lang], path)
     assets = relative("", path)
+
+    # Category-level Q&A with numbers the directory actually knows, so the page
+    # can be quoted by answer engines without inventing prices or benchmarks.
+    free = sum(1 for tool in tools if (tool["fee"] or "").strip() in {"免费", "Free", "免费增值", "Free tier"})
+    snapshot = data["meta"]["updatedAt"]
+    first = "、".join(tool["name"] for tool in tools[:3]) if zh else ", ".join(tool["name"] for tool in tools[:3])
+    faq = [
+        (f"「{display}」分类收录了多少个工具？" if zh else f"How many tools are in {display}?",
+         f"共 {len(tools)} 个，其中 {free} 个标注为完全免费。内容快照 {snapshot}，随上游仓库每周更新。" if zh
+         else f"{len(tools)} tools, {free} of them listed as entirely free. Snapshot {snapshot}; the directory follows the upstream repo weekly."),
+        (f"这个分类里包含哪些工具？" if zh else f"Which tools are listed in {display}?",
+         f"目录前几条是 {first}，完整列表在本页；每条都写了差异化定位与费用档位，具体能力和条款以官网为准。" if zh
+         else f"The first entries are {first}; the full list is on this page. Each entry states its differentiator and pricing tier, so check official sites for current terms."),
+        ("费用和功能信息多久核对一次？" if zh else "How current is the pricing information?",
+         f"费用是大致档位，取自 {snapshot} 的社区快照；下单前请以官网价格页为准。" if zh
+         else f"Pricing is a broad tier taken from the {snapshot} community snapshot; confirm on the official pricing page before buying."),
+    ]
+    faq_html = "".join(f"<details><summary>{escape(question)}</summary><p>{escape(answer)}</p></details>" for question, answer in faq)
+    faq_schema = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": question, "acceptedAnswer": {"@type": "Answer", "text": answer}}
+        for question, answer in faq]}
     return f'''<!doctype html>
 <html lang="{LANG_CODES[lang]}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{escape(title)}</title><meta name="description" content="{escape(description)}">
 {head(title, description, path, alternates, base, lang, [("工具目录" if zh else "Directory", HOMES[lang]), (display, path)], image=f"og/{lang}/categories/{slug}.png", items=tools)}
+<script type="application/ld+json">{script_json(faq_schema)}</script>
 <link rel="stylesheet" href="{assets}style.css?v=static-directory-v1"></head><body class="category-page">
 <header><a class="brand" href="{home}"><span class="mark">✳</span> Awesome AI Tools</a><nav><a href="{home}#directory">{"搜索工具" if zh else "Search tools"}</a>{language_link}<a href="{REPO}" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
 <main><section class="category-intro"><nav class="breadcrumbs" aria-label="{"当前位置" if zh else "Breadcrumb"}"><a href="{home}">{"工具目录" if zh else "Directory"}</a><span aria-hidden="true"> / </span><span aria-current="page">{escape(display)}</span></nav>
 <h1>{escape(display)}</h1><p>{escape(intro)}</p><p class="category-meta">{len(tools)} {"个工具 · 内容快照：" if zh else "tools · Directory snapshot: "}{data['meta']['updatedAt']}</p></section>
 <section class="directory static-directory"><aside><h2 class="aside-title">{"浏览分类" if zh else "Browse categories"}</h2><nav aria-label="{"工具分类" if zh else "Tool categories"}">{category_navigation(data, routes, lang, path, name)}</nav></aside><div class="results"><div class="cards">{''.join(card(tool, lang, None, relative(tool_links[tool["name"]], path) if tool["name"] in tool_links else None) for tool in tools)}</div>
-<p class="data-note">{"功能、费用与使用条款请以工具官网为准。" if zh else "Check official sites for current features, pricing, and terms."}</p><a class="subtle" href="{home}#directory">{"返回完整目录与搜索 →" if zh else "Search the full directory →"}</a></div></section></main>
+<p class="data-note">{"功能、费用与使用条款请以工具官网为准。" if zh else "Check official sites for current features, pricing, and terms."}</p><a class="subtle" href="{home}#directory">{"返回完整目录与搜索 →" if zh else "Search the full directory →"}</a></div></section>
+<section class="tool-faq"><h2>{"常见问题" if zh else "Common questions"}</h2>{faq_html}</section></main>
 <footer><a class="brand" href="{home}">Awesome AI Tools</a><p>{"目录来源：" if zh else "Directory source: "}<a href="{REPO}">Awesome-AITools</a> · <a href="{REPO}/blob/main/LICENSE">CC BY 4.0</a></p><a href="#">{"回到顶部 ↑" if zh else "Back to top ↑"}</a></footer></body></html>'''
 
 
@@ -429,11 +462,30 @@ def build(output, base):
         ET.SubElement(url, ns + "lastmod").text = lastmod
     ET.ElementTree(sitemap).write(output / "sitemap.xml", encoding="utf-8", xml_declaration=True)
     (output / "llms.txt").write_text(llms_txt(data, routes, base), encoding="utf-8")
+    (output / "llms-full.txt").write_text(llms_full_txt(data, routes, base), encoding="utf-8")
     (output / ".nojekyll").touch()
-    # robots.txt is only read at the origin root, so a project-subpath build
-    # must not ship one; a root-domain deployment (custom domain) should.
-    if urlsplit(base).path in {"", "/"}:
-        (output / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n", encoding="utf-8")
+    # robots.txt is only honoured at the origin root. On a project subpath it is
+    # inert for crawlers, but it still documents the AI-crawler policy and points
+    # at the sitemap, so ship it either way; a custom domain makes it effective.
+    (output / "robots.txt").write_text(
+        "User-agent: *\n"
+        "Allow: /\n"
+        "\n"
+        "# AI crawlers and answer engines may read and cite this directory.\n"
+        "User-agent: GPTBot\n"
+        "Allow: /\n"
+        "User-agent: OAI-SearchBot\n"
+        "Allow: /\n"
+        "User-agent: ClaudeBot\n"
+        "Allow: /\n"
+        "User-agent: PerplexityBot\n"
+        "Allow: /\n"
+        "User-agent: Google-Extended\n"
+        "Allow: /\n"
+        "\n"
+        f"Sitemap: {base}sitemap.xml\n",
+        encoding="utf-8",
+    )
     return {"base_url": base, "pages": len(pages), "categories": {lang: len(group) for lang, group in routes.items()}}
 
 
@@ -458,6 +510,41 @@ def llms_txt(data, routes, base):
     lines.append("")
     lines.append(f"- Newly added tools: [Atom]({base}feed.xml) · [JSON Feed]({base}feed.json)")
     lines.append("")
+    lines.append("## Full catalog")
+    lines.append("")
+    lines.append(f"- Every entry with its description and link: [llms-full.txt]({base}llms-full.txt)")
+    lines.append("")
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def llms_full_txt(data, routes, base):
+    """The whole directory as plain markdown, grouped by category.
+
+    Answer engines quote paragraphs, not cards; a single flat file with one
+    line per tool is the cheapest way to be retrievable without JS.
+    """
+    lines = [
+        "# Awesome AI Tools — full catalog",
+        "",
+        f"> {len(data['zh'])} Chinese entries, {len(data['en'])} English entries. Directory of AI tools maintained by the "
+        f"[Awesome-AITools]({REPO}) community. Snapshot: {data['meta']['updatedAt']}. License: CC BY 4.0.",
+        "",
+        f"- Repository: {REPO}",
+        f"- Site: {base}",
+        f"- Pricing note: the fee column is a broad tier from the community snapshot; confirm on the official site.",
+        "",
+    ]
+    for lang, group in routes.items():
+        lines.append(f"## {'中文目录' if lang == 'zh' else 'English catalog'} ({len(data[lang])} entries)")
+        lines.append("")
+        for name, path in group.items():
+            tools = [tool for tool in data[lang] if tool["category"] == name]
+            lines.append(f"### {name} — {len(tools)} tools ({base + path})")
+            lines.append("")
+            for tool in tools:
+                desc = shorten(clean_description(tool["description"]), 240)
+                lines.append(f"- **{tool['name']}** · {tool['fee'] or '未标明'} · {desc} · {tool['links'][0]['url']}")
+            lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 

@@ -79,3 +79,6 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Notify IndexNow (Bing, Yandex, Naver)
+        if: github.event_name == 'push'
+        run: python3 scripts/notify_indexnow.py || echo "IndexNow skipped (non-blocking)"
