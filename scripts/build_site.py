@@ -107,6 +107,8 @@ LOCALES = {"zh": "zh_CN", "en": "en_US"}
 def head(title, description, path, alternates, base, lang, breadcrumb=None, image="og/zh.png", items=None):
     canonical = base + path
     lines = [f'<link rel="canonical" href="{escape(canonical)}">']
+    lines.append(f'<link rel="alternate" type="application/atom+xml" title="Awesome AI Tools · 新增收录" href="{escape(base + "feed.xml")}">')
+    lines.append(f'<link rel="alternate" type="application/feed+json" title="Awesome AI Tools · JSON Feed" href="{escape(base + "feed.json")}">')
     for alternate, target in alternates.items():
         lines.append(f'<link rel="alternate" hreflang="{LANG_CODES[alternate]}" href="{escape(base + target)}">')
     default = alternates.get("zh", next(iter(alternates.values())))
@@ -451,7 +453,11 @@ def llms_txt(data, routes, base):
         for name, path in group.items():
             count = sum(tool["category"] == name for tool in data[lang])
             lines.append(f"- [{name}]({base + path}) ({count} tools)")
-        lines.append("")
+            lines.append("")
+    lines.append("## Feeds")
+    lines.append("")
+    lines.append(f"- Newly added tools: [Atom]({base}feed.xml) · [JSON Feed]({base}feed.json)")
+    lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 

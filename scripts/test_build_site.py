@@ -13,6 +13,7 @@ class Page(HTMLParser):
     def __init__(self, text):
         super().__init__()
         self.links, self.canonicals, self.alternates, self.scripts, self.meta = [], [], {}, [], []
+        self.feeds = []
         self.ids, self.names = set(), []
         self.description = ""
         self.language = ""
@@ -29,13 +30,16 @@ class Page(HTMLParser):
             self.language = a.get('lang')
         if tag == 'h1':
             self.h1_count += 1
-        if tag in {'a', 'link'} and 'href' in a:
+        is_feed = tag == 'link' and a.get('rel') == 'alternate' and a.get('type') in {'application/atom+xml', 'application/feed+json'}
+        if tag in {'a', 'link'} and 'href' in a and not is_feed:
             self.links.append(a['href'])
+        if is_feed:
+            self.feeds.append(a['href'])
         if tag in {'img', 'script'} and 'src' in a:
             self.links.append(a['src'])
         if tag == 'link' and a.get('rel') == 'canonical':
             self.canonicals.append(a['href'])
-        if tag == 'link' and a.get('rel') == 'alternate':
+        if tag == 'link' and a.get('rel') == 'alternate' and 'hreflang' in a:
             self.alternates[a['hreflang']] = a['href']
         if tag == 'meta' and a.get('name') == 'description':
             self.description = a.get('content', '')
@@ -123,6 +127,11 @@ class BuiltSiteTests(unittest.TestCase):
                 if code != 'x-default':
                     self.assertEqual(self.pages[target].language, code)
                     self.assertEqual(self.pages[target].alternates[page.language], url)
+
+    def test_every_page_advertises_the_new_entry_feed(self):
+        expected = [self.base + 'feed.xml', self.base + 'feed.json']
+        for url, page in self.pages.items():
+            self.assertEqual(page.feeds, expected, url)
 
     def test_json_payload_is_safe_in_html(self):
         self.assertNotIn('</script>', build_site.script_json({'value': '</script><script>alert(1)</script>'}))
