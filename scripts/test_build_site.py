@@ -1,6 +1,7 @@
 from html.parser import HTMLParser
 import json
 from pathlib import Path
+import re
 import tempfile
 import unittest
 from urllib.parse import unquote, urljoin, urlsplit
@@ -137,12 +138,31 @@ class BuiltSiteTests(unittest.TestCase):
     def test_json_payload_is_safe_in_html(self):
         self.assertNotIn('</script>', build_site.script_json({'value': '</script><script>alert(1)</script>'}))
 
-    def test_root_domain_and_project_robots_differ(self):
-        self.assertFalse((self.output / 'robots.txt').exists())
+    def test_robots_allow_ai_crawlers_and_point_at_sitemap(self):
+        # Shipped on subpaths too: inert for crawlers there, but it documents the
+        # policy and becomes effective the moment a custom domain is attached.
+        robots = (self.output / 'robots.txt').read_text()
+        for bot in ('GPTBot', 'ClaudeBot', 'PerplexityBot'):
+            self.assertIn(bot, robots)
+        self.assertIn(f'Sitemap: {self.base}sitemap.xml', robots)
         with tempfile.TemporaryDirectory() as folder:
             output = Path(folder) / 'dist'
             build_site.build(output, 'https://example.org/')
             self.assertIn('Sitemap: https://example.org/sitemap.xml', (output / 'robots.txt').read_text())
+
+    def test_llms_full_catalog_lists_every_entry(self):
+        text = (self.output / 'llms-full.txt').read_text()
+        for language in ('zh', 'en'):
+            for tool in self.data[language][:5]:
+                self.assertIn(tool['name'], text)
+        self.assertIn('llms-full.txt', (self.output / 'llms.txt').read_text())
+
+    def test_category_pages_carry_faq_schema(self):
+        page = (self.output / 'zh/categories/ai-coding/index.html').read_text()
+        schema = json.loads(re.search(r'<script type="application/ld\+json">(\{"@context": "https://schema.org", "@type": "FAQPage".*?)</script>', page, re.S).group(1))
+        self.assertGreaterEqual(len(schema['mainEntity']), 3)
+        for item in schema['mainEntity']:
+            self.assertTrue(item['acceptedAnswer']['text'])
 
     def test_open_graph_and_twitter_cards_use_existing_images(self):
         build_og.build(self.output, self.base)
