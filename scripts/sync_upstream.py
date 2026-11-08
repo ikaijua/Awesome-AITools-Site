@@ -147,7 +147,7 @@ def parse_readme(text, filename):
 
 
 def get(url):
-    request = Request(url, headers={"User-Agent": "Awesome-AITools-Site-sync", "Accept": "application/vnd.github+json"})
+    request = Request(url, headers={"User-Agent": "awesome-ai-tools-site-sync", "Accept": "application/vnd.github+json"})
     with urlopen(request, timeout=60) as response:
         return response.read().decode("utf-8")
 

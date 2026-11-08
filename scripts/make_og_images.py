@@ -30,13 +30,13 @@ COPIES = {
         "kicker": "AI 工具导航",
         "title": "精选 AI 工具与开源项目",
         "subtitle": "按分类浏览 · 费用标注 · 官网直达",
-        "footer": "ikaijua.github.io/Awesome-AITools-Site",
+        "footer": "ikaijua.github.io/awesome-ai-tools-site",
     },
     "en": {
         "kicker": "AI TOOL DIRECTORY",
         "title": "Curated AI Tools & Open Source",
         "subtitle": "Browse by category · Pricing notes · Official links",
-        "footer": "ikaijua.github.io/Awesome-AITools-Site/en/",
+        "footer": "ikaijua.github.io/awesome-ai-tools-site/en/",
     },
 }
 

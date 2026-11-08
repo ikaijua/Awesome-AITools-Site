@@ -26,8 +26,10 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote
 
+ROOT = Path(__file__).resolve().parents[1]
 REPO_URL = "https://github.com/ikaijua/Awesome-AITools"
-DEFAULT_SITE = "https://ikaijua.github.io/Awesome-AITools-Site"
+# Single source of truth: CI also derives its base URL from site.config.json.
+DEFAULT_SITE = json.loads((ROOT / "site.config.json").read_text(encoding="utf-8"))["url"].rstrip("/")
 LABELS = (
     "更多介绍", "更多信息", "对比", "开通ChatGPT订阅经验", "suno专题页面",
     "More Info", "Comparison", "Comparison post",

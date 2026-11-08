@@ -2,9 +2,9 @@
 
 [Awesome-AITools](https://github.com/ikaijua/Awesome-AITools) 项目的独立静态导航网站。
 
-目标仓库：`ikaijua/Awesome-AITools-Site`
+目标仓库：`ikaijua/awesome-ai-tools-site`
 
-启用 GitHub Pages 后的默认地址：https://ikaijua.github.io/Awesome-AITools-Site/
+启用 GitHub Pages 后的默认地址：https://ikaijua.github.io/awesome-ai-tools-site/
 
 ## 功能
 
@@ -50,7 +50,7 @@ node --check site/app.js
 
 ## 发布
 
-1. 将本仓库文件上传至 `ikaijua/Awesome-AITools-Site` 的 `main` 分支。
+1. 将本仓库文件上传至 `ikaijua/awesome-ai-tools-site` 的 `main` 分支。
 2. 在仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**。
 3. 进入 **Actions → Deploy GitHub Pages → Run workflow** 运行发布，或向 `main` 推送新提交。
 4. 工作流成功后，在 Settings → Pages 或工作流的 `github-pages` 环境中查看实际地址。
@@ -80,15 +80,15 @@ python3 -m http.server 8000 --directory dist
 本地构建默认公开网址在 `site.config.json`。Actions 使用 `actions/configure-pages` 返回的实际 Pages 网址覆盖它，因此适配项目子路径和已配置的自定义域名。也可手动指定：
 
 ```bash
-python3 scripts/build_site.py --base-url https://ikaijua.github.io/Awesome-AITools-Site/
+python3 scripts/build_site.py --base-url https://ikaijua.github.io/awesome-ai-tools-site/
 python3 -m unittest discover -s scripts -p 'test_*.py'
 ```
 
 ### 提交 Google Search Console
 
-部署成功后，在 [Google Search Console](https://search.google.com/search-console/) 中添加网址前缀资源 `https://ikaijua.github.io/Awesome-AITools-Site/` 并验证所有权。验证可使用 Google 提供的 HTML 文件（放入 `site/`，构建时会复制到发布目录），或将验证 meta 标签加入 `site/index.html` 的 `<head>`。
+部署成功后，在 [Google Search Console](https://search.google.com/search-console/) 中添加网址前缀资源 `https://ikaijua.github.io/awesome-ai-tools-site/` 并验证所有权。验证可使用 Google 提供的 HTML 文件（放入 `site/`，构建时会复制到发布目录），或将验证 meta 标签加入 `site/index.html` 的 `<head>`。
 
-提交 `https://ikaijua.github.io/Awesome-AITools-Site/sitemap.xml`，再用“网址检查”查看首页和分类页的实际抓取结果。所有权验证和提交需在站长自己的 Google 账号完成，代码修改不代表已提交或已被收录。
+提交 `https://ikaijua.github.io/awesome-ai-tools-site/sitemap.xml`，再用“网址检查”查看首页和分类页的实际抓取结果。所有权验证和提交需在站长自己的 Google 账号完成，代码修改不代表已提交或已被收录。
 
 `robots.txt` 仅在域名根路径有效。GitHub Pages 项目子路径中的 `robots.txt` 不会控制该网站，所以默认构建不生成它；缺少该文件不表示禁止抓取。若部署在独立域名根路径，构建器会生成允许抓取并指向站点地图的 `robots.txt`。
 
