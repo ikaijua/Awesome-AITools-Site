@@ -1,9 +1,9 @@
 {
   "meta": {
     "repository": "https://github.com/ikaijua/Awesome-AITools",
-    "commit": "ff53ebb5ad168b81a843136c07f7f29cc55eb2b0",
-    "committedAt": "2026-10-31T09:15:59Z",
-    "updatedAt": "2026-10-31",
+    "commit": "44ab95b702e21736e6b8dcef004dafdf833d193f",
+    "committedAt": "2026-11-15T11:15:23Z",
+    "updatedAt": "2026-11-15",
     "files": {
       "zh": "README-CN.md",
       "en": "README.md"
@@ -12,7 +12,7 @@
   "zh": [
     {
       "name": "ChatGPT",
-      "description": "OpenAI 的 AI 助手，当前最强模型：GPT-6 Astra；DevDay 发布的 GPT-6.1 Sol 与 GPT-6 Luna 将 API 价格下调约 50%（Sol $2/$10、Luna 输入 $0.10 起每百万 token），消费端额度内免费用。核心差异： 持久记忆和用户画像 —— 跨会话记住偏好、续聊最自然；通用能力最均衡，适合日常、编程和创意写作。 2026 年 10 月 7 日起，GPT-6（Sol/Luna）与 Intelligent UI 开始向全球所有 ChatGPT 用户推出：付费用户默认由 GPT-6 Sol 驱动，Free/Go 用户由 GPT-6 Luna 驱动，回复可自动渲染交互式图表、表单和可视化界面。 1.更多介绍 2.开通ChatGPT订阅经验",
+      "description": "OpenAI 的 AI 助手，当前最强模型：GPT-6 Astra，用来处理复杂推理；搭配 Sol、Terra 等模型兼顾日常任务的速度与成本。 核心优势： 1. 旗舰模型能力在第一梯队，图像生成模型行业最强。 2. 持久记忆和用户画像——跨会话记住偏好、续聊最自然。 3. 通用能力最均衡，适合日常、编程和创意写作。 4. 相比 Claude，对特定区域用户的风控没那么严格。 更多介绍 开通 ChatGPT 订阅经验",
       "category": "AI 助手与专有模型",
       "fee": "免费/付费",
       "links": [
@@ -25,7 +25,7 @@
           "url": "https://platform.openai.com/"
         },
         {
-          "label": "开通ChatGPT订阅经验",
+          "label": "开通 ChatGPT 订阅经验",
           "url": "https://github.com/ikaijua/Awesome-AITools/discussions/1025"
         }
       ],
@@ -34,7 +34,7 @@
     },
     {
       "name": "豆包",
-      "description": "字节跳动的 AI 助手，当前旗舰：Doubao-Seed-2.1 Pro（Pro 最新快照 260915）；滚动迭代的最强版本为 Doubao-Seed-Evolving（用户无感迁移）。核心差异： 字节生态入口 + 多模态交互 —— 集成搜索、语音、音乐等能力； 2026-08 推出办公 Agent「豆包工作」：虚拟桌面操作电脑、飞书上下文打通、200+ 技能与连接器、多 Agents 并行协作。在桌面端下载并登录豆包工作，即可免费领取 30 天订阅权益。更多介绍",
+      "description": "字节跳动的 AI 助手，当前旗舰：Doubao-Seed-2.1 Pro（Pro 最新快照 260915）；滚动迭代的最强版本为 Doubao-Seed-Evolving（用户无感迁移）。核心差异： 字节生态入口 + 多模态交互 —— 集成搜索、语音、音乐等能力； 2026-08 推出办公 Agent「豆包工作」：虚拟桌面操作电脑、飞书上下文打通、200+ 技能与连接器、多 Agents 并行协作，可做文字转语音（TTS）：讲稿、文档能直接转成配音，做 PPT / 视频时自动合成旁白。在桌面端下载并登录豆包工作，即可免费领取 30 天订阅权益。更多介绍",
       "category": "AI 助手与专有模型",
       "fee": "免费",
       "links": [
@@ -52,7 +52,7 @@
     },
     {
       "name": "Claude",
-      "description": "Anthropic 研发的 AI 助手，当前最强模型：Claude Fable 5.1（公开版）/ Mythos 5.1（可信访问）； 9 月 22 日发布的 Claude Opus 5.5（5.5 家族首款）在大多数任务上媲美 Fable 5.1，成本低约 40%，Sonnet 5.5 于 9 月 28 日推出；10 月 7 日 Haiku 5.5 发布：输入 $0.10/百万 token、输出 $0.50/百万 token（≤100k prompt），价格约为 Haiku 4.5 的 1/10、Sonnet 5.5 的 1/20，同时 Sonnet 5.5 cache read 降价 50%，agentic 任务成本再降约 20%。核心差异： Cowork 模式把 AI 从“聊天机器人”变成可拉取数据、生成 Excel 预测模型并执行工作流的代理；在编程、长上下文、安全性和企业场景上最强。 更多介绍",
+      "description": "Anthropic 的 AI 助手，当前公开旗舰：Claude Fable 5.2，用来处理高难编程与知识工作；Opus 5.5 作为日常主力，Sonnet、Haiku 兼顾速度与成本。 核心优势： 1. 旗舰模型当前位列 Artificial Analysis 智能指数第一（Fable 5.2，max 档），复杂编程与专业知识工作表现突出。 2. Claude Code 面向整个代码库完成修改、测试和排错，适合需要多步推进的开发任务。 3. Cowork 可结合本地文件与已连接应用，交付带公式的表格、报告和演示文稿。 4. Skills、连接器与子代理可组合成可复用的专业工作流，适合持续处理团队任务。 更多介绍",
       "category": "AI 助手与专有模型",
       "fee": "免费/付费",
       "links": [
@@ -70,7 +70,7 @@
     },
     {
       "name": "Gemini",
-      "description": "Google 的 AI 助手，结合原生多模态、Deep Research 和 Google Workspace 集成。Gemini 4 Argon 已通过 API、AI Studio 和 Gemini Enterprise 开放，Google AI Pro/Ultra 订阅用户可在 Gemini App 使用；100 万 token 预算由输入和输出共享。Gemini 3.8 Flash 仍适合追求速度的任务；Fairwind 另向受信任的网络防御方提供受控访问。Gemini Spark 可跨 Gmail、Calendar、Tasks 执行后台任务。 更多介绍",
+      "description": "Google 的 AI 助手，当前最强模型：Gemini 4 Carbon，用来处理复杂推理与长程任务；搭配 Argon 处理日常软件工程与知识工作，Flash 侧重快速响应。 核心优势： 1. 原生多模态理解，可结合文本、图像、音频和视频分析问题。 2. 与 Google 生态深度整合，可在授权后结合 Gmail、Drive 与 Calendar 处理邮件、资料和日程。 3. 长上下文适合集中分析长文档、代码和视频资料；Carbon 模型支持最高 100 万 token，客户端额度依套餐而定。 4. 结合 Google 搜索与 Deep Research，适合从多源检索、资料整理推进到研究报告。 更多介绍",
       "category": "AI 助手与专有模型",
       "fee": "免费/付费",
       "links": [
@@ -88,9 +88,9 @@
     },
     {
       "name": "通义千问",
-      "description": "阿里云的 AI 助手，当前最强模型：Qwen3.8-Max（8 月 3 日 GA；Qwen3.8-27B 开源权重于 8 月 14 日发布）。核心差异： 开源权重 2.4T MoE + 长链路 Agent 推理 —— 支持 100 万超长上下文、原生多模态和深度研究。",
+      "description": "阿里云的 AI 助手，新一代旗舰 Qwen4-Max-Preview 已开放预览，面向复杂编程、知识工作与智能体任务。核心优势： 结合文本、图片和视频理解处理资料，并通过联网搜索与工具调用推进任务；模型支持最高 100 万 token 上下文。预览 API 仅通过 Token Plan 开放；Qwen4 预览模型与另行提供的开放权重模型需分别看待。 更多介绍",
       "category": "AI 助手与专有模型",
-      "fee": "免费",
+      "fee": "免费/付费",
       "links": [
         {
           "label": "URL",
@@ -101,7 +101,7 @@
           "url": "https://bailian.console.aliyun.com/"
         }
       ],
-      "more": "",
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1656",
       "featured": false
     },
     {
@@ -142,9 +142,9 @@
     },
     {
       "name": "月之暗面的 Kimi Chat",
-      "description": "Moonshot AI 的 AI 助手，当前最强模型：Kimi K3.1 Pro（2026-10-24 发布，K3.1 系列首款）——3 万亿级参数、100 万 token 上下文，在编程智能体、3D 创作与金融工作流上大幅提升：Terminal-Bench 4.0 得分 65.7%（超 GPT-6 Astra）、BenchCAD 3D 基准 92.7%、OfficeQA Pro v2 金融基准 64.4 获当前 SoTA。同步推出 K3.1 Pro Highspeed 高速版（同等智能、输出速度约 2~3 倍），完整模型权重将于 11 月 4 日前发布。核心差异： 面向软件工程、知识工作和深度推理。更多介绍",
+      "description": "Moonshot AI 的 AI 助手，当前旗舰：Kimi K3.1 Pro，用来处理长资料、复杂编程与财务研究；另有 Highspeed 高速版。 核心优势： 1. 长资料分析：模型支持最高 100 万 token 上下文，适合结合多份文档和代码梳理问题；客户端额度依套餐而定。 2. 项目编程：通过 Kimi Code 从修改现有代码推进到完整项目开发，也能结合游戏引擎制作交互作品。 3. 财务研究：可跨财报核对数据、追溯来源并建立财务模型，适合把资料整理推进到分析工作簿。 4. 3D 创作：3D Make 可将文字、草图或参考图转为模型，支持在线预览、编辑及导出用于 3D 打印。 更多介绍",
       "category": "AI 助手与专有模型",
-      "fee": "免费",
+      "fee": "免费/付费",
       "links": [
         {
           "label": "kimi",
@@ -228,13 +228,17 @@
     },
     {
       "name": "Jev",
-      "description": "🌱 TypeSafe AI 推出的\"System One\"决策模型（当前为 early access）——不生成任何文本，只通过三类原语（Choice/Score/Noul）返回带校准概率的类型化答案，底层采用 RLCD 训练使置信度与实际正确率对齐。官方称结构化任务上比前沿大模型快 20-200 倍、成本低至 1/40； 输入 $0.042/百万 token，输出免费，延迟 70-500ms。注意：性能数字为官方口径，尚无第三方验证。更多介绍",
+      "description": "TypeSafe AI 的决策模型，不生成文本，返回类型化答案与校准概率，适用于路由、分类和 Agent 检查。更多介绍",
       "category": "决策模型",
-      "fee": "免费/付费",
+      "fee": "付费：$0.042",
       "links": [
         {
-          "label": "URL",
+          "label": "官网",
           "url": "https://typesafe.ai/"
+        },
+        {
+          "label": "价格说明",
+          "url": "https://help.typesafe.ai/articles/5187202169-how-much-does-jev-cost"
         }
       ],
       "more": "https://github.com/ikaijua/Awesome-AITools/discussions/996",
@@ -242,9 +246,9 @@
     },
     {
       "name": "SemIf（原名 OpenJev）",
-      "description": "🌱 MIT 许可的独立开源项目（官方声明与 Jev / TypeSafe 无关联），把「运行时语义决策」做成一次前向即可读出的概率接口：不训练、不微调，用冻结的 Qwen3.5-4B 直接读取各选项概率，不生成任何文本、无需 JSON 解析——面向 agent 的小决策（路由、重试、证据是否成立）。21 个是非判断：直接读概率中位 1.02s，逐字生成 JSON 需 5.33s（约 5.2 倍）；与 TypeSafe 公开的 102 条子集一致率 84.5%（闭源 Jev 公布 88.3%）。可跑在单卡 3090、Apple Silicon（MLX/MPS）、纯 CPU（llama.cpp），也有免 waitlist 的纯浏览器 WebGPU demo。",
+      "description": "MIT 许可的独立开源项目，与 Jev / TypeSafe 无关联。直接读取冻结开放模型的选项概率，无需生成文本或微调；支持 GPU、Apple Silicon、CPU 本地推理，也提供浏览器 WebGPU Demo。",
       "category": "决策模型",
-      "fee": "免费",
+      "fee": "代码免费，算力自备",
       "links": [
         {
           "label": "GitHub",
@@ -260,13 +264,31 @@
     },
     {
       "name": "OpenAI Decisions API",
-      "description": "OpenAI 专用决策端点 POST /v1/decisions（公开测试版），基于 gpt-6-luna 返回类型化答案：predicate（0–1 概率）、choice（选中值 + 各选项概率）、score（有序等级的概率加权均值）。输入 $0.10/百万 token，缓存读写与输出均免费；官方称比 Responses API 同调用快约 10 倍。",
+      "description": "专用决策端点，返回是非条件概率、多选结果和标准评分，适用于路由、筛选及工作流检查，无需生成开放式文本。",
       "category": "决策模型",
-      "fee": "免费/付费",
+      "fee": "付费：$0.10（未缓存）",
       "links": [
         {
+          "label": "API 文档及定价",
+          "url": "https://developers.openai.com/api/docs/guides/decisions#pricing-and-availability"
+        }
+      ],
+      "more": "",
+      "featured": false
+    },
+    {
+      "name": "Gemini Decisions API",
+      "description": "Google 的多模态决策 API，返回是非、多选、标准评分及概率、置信度。可对同一份文本、图像、音频、视频或 PDF 同时评估多个问题，适用于 Agent 路由、规则检查及内容评分。",
+      "category": "决策模型",
+      "fee": "$0.10；有免费额度",
+      "links": [
+        {
+          "label": "官方介绍及定价",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+        },
+        {
           "label": "API 文档",
-          "url": "https://platform.openai.com/docs/guides/decisions"
+          "url": "https://ai.google.dev/gemini-api/docs/decisions"
         }
       ],
       "more": "",
@@ -274,17 +296,17 @@
     },
     {
       "name": "Microsoft-Decision-1",
-      "description": "微软基于 Qwen3.5-9B 后训练的快速决策打分模型，不生成文本，直接返回固定选项的校准概率。支持是非、多选、评分等场景，32K 上下文；通过 Microsoft Foundry 与 OpenRouter 调用，输入 $0.042/百万 token，输出免费。",
+      "description": "微软的决策打分模型，不生成文本，直接返回固定选项的校准概率。通过 Microsoft Foundry 与 OpenRouter 提供分类、路由、优先级排序及验证能力。",
       "category": "决策模型",
-      "fee": "免费/付费",
+      "fee": "OpenRouter：$0.042",
       "links": [
         {
           "label": "Foundry",
           "url": "https://azure.microsoft.com/en-us/products/ai-foundry"
         },
         {
-          "label": "OpenRouter",
-          "url": "https://openrouter.ai/microsoft/decision-1"
+          "label": "OpenRouter 及定价",
+          "url": "https://openrouter.ai/microsoft/microsoft-decision-1"
         }
       ],
       "more": "",
@@ -292,31 +314,31 @@
     },
     {
       "name": "Cloudflare Clef",
-      "description": "Cloudflare Workers AI 上的决策模型族。clef-omni（30B MoE / 3B 激活）支持文本、图像、音频、视频多模态输入；clef-flash 针对低延迟打分优化，输入 $0.038/百万 token。上下文窗口 64K（flash 为 24K）。",
+      "description": "Workers AI 上的决策模型族，返回类型化判断与选项概率。提供多模态评估及低延迟 Flash 版本，适合与 Cloudflare 托管工作流集成。",
       "category": "决策模型",
-      "fee": "免费/付费",
+      "fee": "$0.038–0.24（按型号）；有免费额度",
       "links": [
         {
           "label": "Workers AI",
           "url": "https://developers.cloudflare.com/workers-ai/models/clef/"
         },
         {
-          "label": "Hugging Face",
-          "url": "https://huggingface.co/Cloudflare/clef-omni"
+          "label": "定价",
+          "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/"
         }
       ],
       "more": "",
       "featured": false
     },
     {
-      "name": "Kimi K3",
-      "description": "月之暗面旗舰开源权重模型，全球首个 3 万亿参数级开源模型，把接近前沿的能力完全开放。Modified MIT 许可；100 万 token 上下文、原生视觉理解，面向软件工程、知识工作与长文档推理。 更多介绍",
+      "name": "Kimi K3.1",
+      "description": "月之暗面旗舰开源权重模型，3 万亿参数级（2.8T 总参数 / 1040 亿激活）开放权重，100 万 token 上下文、原生多模态，强化编程、3D 与金融能力。Modified MIT 许可。 更多介绍",
       "category": "开源大语言模型",
       "fee": "免费",
       "links": [
         {
-          "label": "技术博客",
-          "url": "https://www.kimi.com/blog/kimi-k3"
+          "label": "Kimi",
+          "url": "https://kimi.moonshot.cn/"
         },
         {
           "label": "Hugging Face",
@@ -678,7 +700,7 @@
       "links": [
         {
           "label": "URL",
-          "url": "https://www.codebuddy.cn/work/"
+          "url": "https://www.workbuddy.cn/events/invite?inviteCode=1fd88lsfd5oq5i"
         }
       ],
       "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1073",
@@ -760,6 +782,20 @@
         }
       ],
       "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1113",
+      "featured": false
+    },
+    {
+      "name": "Grok Bot",
+      "description": "SpaceXAI（原 xAI）推出的「常驻 AI 团队成员」：每个 Bot 运行在一台持久在线的云端电脑（浏览器、文件系统、终端）上，登录你已有的应用，在后台完成多步任务，合上笔记本也不中断。录屏演示一次流程即可存为可复用技能；多个 Bot 在群聊中协作并交接任务。随 The X Subscription（Premium/Super/Ultra）与 SuperGrok/Cursor 方案提供，无免费档。 更多介绍",
+      "category": "AI Agent",
+      "fee": "免费试用/付费",
+      "links": [
+        {
+          "label": "URL",
+          "url": "https://grok.com/"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1536",
       "featured": false
     },
     {
@@ -1535,6 +1571,24 @@
       "featured": false
     },
     {
+      "name": "Orchestrator",
+      "description": "开源（Apache-2.0）桌面应用，用于并行运行多个编程智能体。由编排智能体拆分任务并分派给多个 worker，每个 worker 在独立的 git worktree 中运行 38 种受支持的智能体之一（Claude Code、Codex、Cursor、Gemini CLI、Aider 等）。看板跟踪每个 PR 的 CI 与评审状态，失败的检查和评审意见会自动回传给负责该分支的智能体。 支持 macOS、Windows、Linux，并提供 iOS 与 Android 应用用于远程会话。 更多介绍",
+      "category": "Agent 工作台与协作",
+      "fee": "免费",
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://orchestrator.inc"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/OrchestratorInc/agent-orchestrator"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1635",
+      "featured": false
+    },
+    {
       "name": "Microsoft Agent Framework",
       "description": "微软开源（MIT）的 AI 智能体与多智能体工作流框架，也是已归档 AutoGen 的官方推荐后继项目。支持 Python、.NET 和多家模型服务，提供图式编排、检查点恢复、人工审批与 OpenTelemetry 可观测性，适合需要持久执行、可审查工作流的开发团队，可从本地开发扩展到云端部署。框架免费，模型和托管费用取决于所选服务。",
       "category": "Agent 开发框架与运行时",
@@ -1764,6 +1818,32 @@
         }
       ],
       "more": "",
+      "featured": false
+    },
+    {
+      "name": "Firecrawl",
+      "description": "面向 AI 智能体的开源上下文 API（AGPL-3.0，核心可自托管）：搜索网页（可按需返回完整页面内容），把任意 URL 抓取为干净的 Markdown 或结构化 JSON，解析 PDF 等文档，爬取整站，获取站点全部 URL，在真实浏览器中与页面交互（点击、填写表单、处理动态页面），运行智能体任务做多来源调研，并监控页面变化。可通过托管 API、Python / Node SDK、CLI 使用，也可通过 MCP 服务器 接入 Claude Code、Cursor 等 MCP 客户端，或为编程智能体安装 Firecrawl Skills。更多介绍",
+      "category": "浏览器与计算机自动化",
+      "fee": "免费/付费",
+      "links": [
+        {
+          "label": "URL",
+          "url": "https://www.firecrawl.dev/?utm_source=awesome-aitools&utm_medium=integration"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/firecrawl/firecrawl"
+        },
+        {
+          "label": "MCP 服务器",
+          "url": "https://github.com/firecrawl/firecrawl-mcp-server"
+        },
+        {
+          "label": "Firecrawl Skills",
+          "url": "https://github.com/firecrawl/skills"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1619",
       "featured": false
     },
     {
@@ -2123,6 +2203,20 @@
         {
           "label": "官网",
           "url": "https://debarghyadas.com/neolabs/"
+        }
+      ],
+      "more": "",
+      "featured": false
+    },
+    {
+      "name": "AIHOT",
+      "description": "跟踪中文 AI 行业动态，把同一事件的不同报道合成可追踪的时间线，保留原文入口，并提供日报、周报和月报。",
+      "category": "AI 新闻与资讯",
+      "fee": "免费",
+      "links": [
+        {
+          "label": "官网",
+          "url": "https://aihot.news/"
         }
       ],
       "more": "",
@@ -3021,6 +3115,20 @@
       "featured": false
     },
     {
+      "name": "Gemini Omni",
+      "description": "Google DeepMind 的视频生成模型系列，主打对话式多镜头创作：可从文本、图片或单张风格图出片，再用多轮对话持续精修同一片段，具备电影级运镜控制与较强的参考素材忠实度，360p/720p 草稿可放大到 1080p/4K。覆盖 Gemini API、Google AI Studio、Google Cloud，并进入 Google Flow、Vids、Ads 等产品。更多介绍",
+      "category": "AI 视频创作",
+      "fee": "免费/付费",
+      "links": [
+        {
+          "label": "URL",
+          "url": "https://deepmind.google/models/gemini-omni/"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1591",
+      "featured": false
+    },
+    {
       "name": "小云雀",
       "description": "小云雀app是由字节跳动旗下剪映推出的AI视频和图片创作助手,支持AI智能成片、数字人视频、AI设计、AI换背景等多种功能，可以免费试用 Seedance 2.5, 更多介绍",
       "category": "AI 视频创作",
@@ -3732,6 +3840,20 @@
         }
       ],
       "more": "",
+      "featured": false
+    },
+    {
+      "name": "豆包工作",
+      "description": "字节跳动的办公 Agent，本身不是专门的配音工具，但能直接把讲稿、文档转成配音：做 PPT 或讲解视频时按脚本分段合成旁白、导出音频文件（如 voiceover.wav / mp3），配音与字幕、画面一次对齐，省掉另找 TTS 工具这一步。音色取决于它调用的语音模型，官网功能页未单独列出该能力。更多介绍",
+      "category": "语音合成（TTS）",
+      "fee": "免费/付费",
+      "links": [
+        {
+          "label": "URL",
+          "url": "https://www.doubao.com/work"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/944",
       "featured": false
     },
     {
@@ -4590,7 +4712,7 @@
   "en": [
     {
       "name": "ChatGPT",
-      "description": "OpenAI's AI assistant. Current flagship: GPT-6 Astra; GPT-6.1 Sol from the Sep 29 DevDay and GPT-6 Luna cut API prices ~50% ($2/$10 and from $0.10 input per M tokens) and are free within consumer limits. Starting Oct 7, 2026, GPT-6 (Sol/Luna) with Intelligent UI is rolling out globally to all ChatGPT users: paid tiers default to GPT-6 Sol, Free/Go tiers get GPT-6 Luna, and responses can automatically render interactive charts, forms, and visual layouts. Differentiation: persistent memory and user profile — remembers context across conversations and feels the most personalized; best general-purpose assistant for coding, writing, and daily tasks. More Info",
+      "description": "OpenAI's AI assistant. Its most capable model, GPT-6 Astra, handles complex reasoning, while models such as Sol and Terra balance speed and cost for everyday tasks. Core strengths: 1. Top-tier flagship model capabilities and the industry's strongest image-generation model. 2. Persistent memory and user profiles—remembers preferences across conversations for the most natural continuity. 3. The most balanced general-purpose capabilities, suited to everyday tasks, coding, and creative writing. 4. Less stringent regional account risk controls than Claude for users in certain regions. More Info",
       "category": "AI Assistants & Proprietary Models",
       "fee": "Free/Paid",
       "links": [
@@ -4608,7 +4730,7 @@
     },
     {
       "name": "Claude",
-      "description": "Anthropic's AI assistant. Current flagship: Claude Fable 5.1 (general) / Claude Mythos 5.1 (trusted access); Claude Opus 5.5 matches Fable 5.1 on most tasks at ~40% lower cost, Sonnet 5.5 shipped Sep 28, and Haiku 5.5 launched Oct 7 at $0.10/$0.50 per M tokens for prompts up to 100k — roughly 1/10 the price of Haiku 4.5 and 1/20 of Sonnet 5.5. Sonnet 5.5 cache reads were also cut 50%, making most agentic work ~20% cheaper. Differentiation: Cowork mode turns the chatbot into an agent that pulls financial data, builds Excel forecasting models, and executes workflows; strongest at coding, long-context reasoning, safety, and enterprise use. More Info",
+      "description": "Anthropic's AI assistant. Its current public flagship, Claude Fable 5.2, handles demanding coding and knowledge work; Opus 5.5 is the everyday workhorse, while Sonnet and Haiku balance speed and cost. Core strengths: 1. Its flagship currently ranks #1 on the Artificial Analysis Intelligence Index (Fable 5.2, max), with particular strengths in complex coding and professional knowledge work. 2. Claude Code makes changes, runs tests, and investigates bugs across codebases, suited to development tasks that require multiple steps. 3. Cowork combines local files and connected apps to deliver spreadsheets with working formulas, reports, and presentations. 4. Skills, connectors, and subagents can be combined into reusable specialist workflows for recurring team tasks. More Info",
       "category": "AI Assistants & Proprietary Models",
       "fee": "Free/Paid",
       "links": [
@@ -4626,7 +4748,7 @@
     },
     {
       "name": "Gemini",
-      "description": "Google's AI assistant combining native multimodality, Deep Research, and Google Workspace integration. Gemini 4 Argon is now available through the API, AI Studio, and Gemini Enterprise, with Gemini app access for Google AI Pro/Ultra subscribers; its 1M-token budget is shared by input and output. Gemini 3.8 Flash remains the fast option. Fairwind provides separate controlled access for trusted cyber defenders; Gemini Spark handles background tasks across Gmail, Calendar, and Tasks. More Info",
+      "description": "Google's AI assistant. Its most capable model, Gemini 4 Carbon, handles complex reasoning and long-running tasks; Argon covers everyday software engineering and knowledge work, while Flash prioritizes fast responses. Core strengths: 1. Native multimodal understanding combines text, images, audio, and video when analyzing a problem. 2. Deep Google ecosystem integration brings authorized Gmail, Drive, and Calendar access into email, document, and scheduling tasks. 3. Long context supports analysis of lengthy documents, code, and video; the Carbon model supports up to 1 million tokens, with app limits varying by plan. 4. Google Search and Deep Research support research from multi-source discovery and synthesis through to a report. More Info",
       "category": "AI Assistants & Proprietary Models",
       "fee": "Free/Paid",
       "links": [
@@ -4662,9 +4784,9 @@
     },
     {
       "name": "Kimi Chat",
-      "description": "Moonshot AI's AI assistant. Current flagship: Kimi K3.1 Pro (Oct 24, 2026; first model of the K3.1 series) — a 3-trillion-parameter model with 1M-token context and major gains in coding agents, 3D creation, and finance workflows: Terminal-Bench 4.0 score 65.7% (vs GPT-6 Astra 58.2%), BenchCAD 92.7%, OfficeQA Pro v2 64.4 (current SOTA). K3.1 Pro Highspeed ships with the same intelligence at ~2-3x output speed; full model weights to be released by Nov 4, 2026. Differentiation: optimized for software engineering, repository-scale analysis, and long-document reasoning. More Info",
+      "description": "Moonshot AI's AI assistant. Its current flagship, Kimi K3.1 Pro, handles long documents, complex coding, and financial research; a Highspeed variant is also available. Core strengths: 1. Long-document analysis: the model supports up to 1M tokens of context for working across documents and code; app limits depend on the plan. 2. Project development: Kimi Code supports tasks from modifying existing code to building complete projects, including interactive experiences using game engines. 3. Financial research: cross-check figures across financial reports, trace sources, and build financial models, turning source material into analytical workbooks. 4. 3D creation: 3D Make turns text, sketches, or reference images into models, with online previews, editing, and export for 3D printing. More Info",
       "category": "AI Assistants & Proprietary Models",
-      "fee": "Free",
+      "fee": "Free/Paid",
       "links": [
         {
           "label": "Kimi",
@@ -4716,9 +4838,9 @@
     },
     {
       "name": "Qwen",
-      "description": "Alibaba's AI assistant. Current flagship: Qwen3.8-Max (GA Aug 3, 2026; open weights for Qwen3.8-27B released Aug 14). Differentiation: open-weight 2.4T MoE + long-horizon agentic reasoning — strong coding/deep research with 1M context and native multimodality.",
+      "description": "Alibaba's AI assistant, with next-generation flagship Qwen4-Max-Preview now in preview for complex coding, knowledge work, and agent tasks. Core strengths: combines text, image, and video understanding with web search and tool use, with up to 1M tokens of model context. Preview API access requires Token Plan; the Qwen4 preview is distinct from separately available open-weight models. More Info",
       "category": "AI Assistants & Proprietary Models",
-      "fee": "Free",
+      "fee": "Free/Paid",
       "links": [
         {
           "label": "URL",
@@ -4729,7 +4851,7 @@
           "url": "https://bailian.console.aliyun.com/"
         }
       ],
-      "more": "",
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1657",
       "featured": false
     },
     {
@@ -4766,13 +4888,17 @@
     },
     {
       "name": "Jev",
-      "description": "🌱 TypeSafe AI's \"System One\" decision model (early access) — it never generates text, returning typed answers (Choice/Score/Noul) with calibrated probabilities so confidence matches accuracy. Officially 20-200x faster and 1/40-1/400 cheaper than frontier LLMs on structured tasks; input $0.042/M tokens, output free, 70-500ms latency. Note: official figures, not yet independently verified. More Info",
+      "description": "TypeSafe AI's decision model returns typed answers and calibrated probabilities instead of generating text. Suited to routing, classification, and agent checks. More Info",
       "category": "Decision Models",
-      "fee": "Free/Paid",
+      "fee": "Paid: $0.042",
       "links": [
         {
           "label": "URL",
           "url": "https://typesafe.ai/"
+        },
+        {
+          "label": "Pricing",
+          "url": "https://help.typesafe.ai/articles/5187202169-how-much-does-jev-cost"
         }
       ],
       "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1012",
@@ -4780,9 +4906,9 @@
     },
     {
       "name": "SemIf (formerly OpenJev)",
-      "description": "🌱 An MIT-licensed independent open-source project (explicitly unaffiliated with Jev or TypeSafe) that turns runtime semantic decisions into a probability readout: no training, no fine-tuning — it reads typed option probabilities directly from a frozen Qwen3.5-4B, generating no text and needing no JSON parsing, aimed at the small decisions agents make (route this, retry that, does the evidence hold?). On 21 yes/no judgments the direct readout has a median of 1.02s vs 5.33s for generating a JSON array token by token (~5.2x); agreement with TypeSafe's published 102-row subset is 84.5% (closed-source Jev reports 88.3%). Runs on a single RTX 3090, Apple Silicon (MLX/MPS), or CPU-only via llama.cpp, plus a browser-only WebGPU demo with no waitlist.",
+      "description": "Independent MIT-licensed project, unaffiliated with Jev or TypeSafe. Reads typed option probabilities from frozen open models without generating text or requiring fine-tuning. Supports local inference on GPU, Apple Silicon, and CPU, plus a browser WebGPU demo.",
       "category": "Decision Models",
-      "fee": "Free",
+      "fee": "Free code; bring your own compute",
       "links": [
         {
           "label": "GitHub",
@@ -4798,13 +4924,31 @@
     },
     {
       "name": "OpenAI Decisions API",
-      "description": "OpenAI's dedicated decision endpoint (POST /v1/decisions) in public beta. Returns typed answers — predicate (0–1 probability), choice (selected value + per-option probabilities), or score (probability-weighted mean across ordered levels) — based on gpt-6-luna. Input $0.10/M tokens; cache read/write and output tokens are free. About 10× faster than the same call through Responses API.",
+      "description": "Dedicated decision endpoint returning predicate probabilities, multiple-choice selections, and rubric scores. Useful for routing, filtering, and workflow checks without open-ended text generation.",
       "category": "Decision Models",
-      "fee": "Free/Paid",
+      "fee": "Paid: $0.10 (uncached)",
       "links": [
         {
+          "label": "API Docs & Pricing",
+          "url": "https://developers.openai.com/api/docs/guides/decisions#pricing-and-availability"
+        }
+      ],
+      "more": "",
+      "featured": false
+    },
+    {
+      "name": "Gemini Decisions API",
+      "description": "Google's multimodal decision API returns yes/no judgments, multiple-choice answers, and rubric scores with probabilities and confidence. Evaluates multiple questions against shared text, image, audio, video, or PDF input, suited to routing, policy checks, and content grading.",
+      "category": "Decision Models",
+      "fee": "$0.10; free tier available",
+      "links": [
+        {
+          "label": "Official overview & pricing",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+        },
+        {
           "label": "API Docs",
-          "url": "https://platform.openai.com/docs/guides/decisions"
+          "url": "https://ai.google.dev/gemini-api/docs/decisions"
         }
       ],
       "more": "",
@@ -4812,17 +4956,17 @@
     },
     {
       "name": "Microsoft-Decision-1",
-      "description": "Microsoft's fast decision-scoring model, post-trained from Qwen3.5-9B. Returns calibrated probabilities over fixed yes/no, multiple-choice, or rating options instead of generating text. Available through Microsoft Foundry and OpenRouter; 32K context, input $0.042/M tokens, output free.",
+      "description": "Microsoft's decision-scoring model returns calibrated probabilities over fixed answer options instead of generating text. Supports classification, routing, prioritization, and verification through Microsoft Foundry and OpenRouter.",
       "category": "Decision Models",
-      "fee": "Free/Paid",
+      "fee": "$0.042 on OpenRouter",
       "links": [
         {
           "label": "Foundry",
           "url": "https://azure.microsoft.com/en-us/products/ai-foundry"
         },
         {
-          "label": "OpenRouter",
-          "url": "https://openrouter.ai/microsoft/decision-1"
+          "label": "OpenRouter & Pricing",
+          "url": "https://openrouter.ai/microsoft/microsoft-decision-1"
         }
       ],
       "more": "",
@@ -4830,31 +4974,31 @@
     },
     {
       "name": "Cloudflare Clef",
-      "description": "Cloudflare Workers AI decision-model family. clef-omni (30B MoE / 3B active) accepts text, image, audio, and video in one request; clef-flash is optimized for low-latency scoring at $0.038/M input tokens. Context window up to 64K (24K for flash).",
+      "description": "Workers AI decision-model family for typed judgments and option probabilities. Offers multimodal evaluation and a Flash variant for low-latency scoring, integrating with Cloudflare-hosted workflows.",
       "category": "Decision Models",
-      "fee": "Free/Paid",
+      "fee": "$0.038–0.24 by model; free allowance available",
       "links": [
         {
           "label": "Workers AI",
           "url": "https://developers.cloudflare.com/workers-ai/models/clef/"
         },
         {
-          "label": "Hugging Face",
-          "url": "https://huggingface.co/Cloudflare/clef-omni"
+          "label": "Pricing",
+          "url": "https://developers.cloudflare.com/workers-ai/platform/pricing/"
         }
       ],
       "more": "",
       "featured": false
     },
     {
-      "name": "Kimi K3",
-      "description": "Moonshot AI's flagship open-weight model — the first open-source model in the 3-trillion-parameter class, putting near-frontier capability fully in the open. Modified MIT license; 1M-token context with native visual understanding, aimed at software engineering, knowledge work, and long-document reasoning. More Info",
+      "name": "Kimi K3.1",
+      "description": "Moonshot AI's flagship open-weight model — the 3T-class (2.8T total / 104B active) open-weight model with 1M-token context and native multimodality, strengthened in coding, 3D, and finance. Modified MIT license. More Info",
       "category": "Open Source LLMs",
       "fee": "Free",
       "links": [
         {
-          "label": "Technical Blog",
-          "url": "https://www.kimi.com/blog/kimi-k3"
+          "label": "Kimi",
+          "url": "https://kimi.moonshot.cn/"
         },
         {
           "label": "Hugging Face",
@@ -5266,6 +5410,20 @@
         }
       ],
       "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1102",
+      "featured": false
+    },
+    {
+      "name": "Grok Bot",
+      "description": "SpaceXAI's (xAI) always-on AI agent: each Bot runs on a persistent cloud computer (browser, filesystem, terminal) and logs into your existing apps to finish multi-step work in the background while your laptop is closed. Teach a workflow once by screen-recording and it becomes a reusable skill; multiple Bots coordinate in group chats and hand off tasks. Gated to X Subscription (Premium/Super/Ultra) and SuperGrok/Cursor plans; no free tier. More Info",
+      "category": "AI Agent",
+      "fee": "Free Trial/Paid",
+      "links": [
+        {
+          "label": "URL",
+          "url": "https://grok.com/"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1535",
       "featured": false
     },
     {
@@ -5987,6 +6145,24 @@
       "featured": false
     },
     {
+      "name": "Orchestrator",
+      "description": "Open-source (Apache-2.0) desktop app for running many coding agents in parallel. An orchestrator agent splits the work into workers, each running one of 38 supported agent harnesses (Claude Code, Codex, Cursor, Gemini CLI, Aider and more) in its own git worktree. A Kanban board tracks every PR through CI and review, and failed checks and review comments go back to the agent that owns the branch. Runs on macOS, Windows and Linux, with iOS and Android apps for remote sessions. More Info",
+      "category": "Agent Workspaces & Collaboration",
+      "fee": "Free",
+      "links": [
+        {
+          "label": "Website",
+          "url": "https://orchestrator.inc"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/OrchestratorInc/agent-orchestrator"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1634",
+      "featured": false
+    },
+    {
       "name": "Microsoft Agent Framework",
       "description": "Microsoft's MIT-licensed framework for production AI agents and multi-agent workflows, and the recommended successor to archived AutoGen. Supports Python and .NET, multiple model providers, graph-based orchestration, checkpointing, human approval, and OpenTelemetry observability. Suitable for teams that need durable, inspectable workflows from local development to cloud deployment; model and hosting costs depend on the chosen services.",
       "category": "Agent Frameworks & Runtimes",
@@ -6216,6 +6392,32 @@
         }
       ],
       "more": "",
+      "featured": false
+    },
+    {
+      "name": "Firecrawl",
+      "description": "Open-source (AGPL-3.0, self-hostable core) context API for AI agents. It searches the web (with full page content on request), scrapes any URL into clean Markdown or structured JSON, parses PDFs and other documents, crawls whole sites, maps a site's URLs, interacts with pages in a real browser (clicks, forms, dynamic pages), runs agent jobs for multi-source research and monitors pages for changes. Use it through the hosted API, Python and Node SDKs, a CLI, the MCP server for Claude Code, Cursor and other MCP clients, or the Firecrawl skills for coding agents. More Info",
+      "category": "Browser & Computer Automation",
+      "fee": "Free/Paid",
+      "links": [
+        {
+          "label": "URL",
+          "url": "https://www.firecrawl.dev/?utm_source=awesome-aitools&utm_medium=integration"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/firecrawl/firecrawl"
+        },
+        {
+          "label": "MCP server",
+          "url": "https://github.com/firecrawl/firecrawl-mcp-server"
+        },
+        {
+          "label": "Firecrawl skills",
+          "url": "https://github.com/firecrawl/skills"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1620",
       "featured": false
     },
     {
@@ -7360,6 +7562,20 @@
         }
       ],
       "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1103",
+      "featured": false
+    },
+    {
+      "name": "Gemini Omni",
+      "description": "Google DeepMind's video generation model family for conversational, multi-shot video creation. Generate from text, images or a single style frame, then refine the same clip across turns with cinematic camera control and strong reference fidelity; 360p/720p drafts can be upscaled to 1080p/4K. Available via the Gemini API, Google AI Studio and Google Cloud, and inside Google Flow, Vids and Ads. More Info",
+      "category": "Video Creation",
+      "fee": "Free/Paid",
+      "links": [
+        {
+          "label": "URL",
+          "url": "https://deepmind.google/models/gemini-omni/"
+        }
+      ],
+      "more": "https://github.com/ikaijua/Awesome-AITools/discussions/1590",
       "featured": false
     },
     {
